@@ -37,6 +37,7 @@ def fix_range(df_temp):
 
 
 def make_df(day):
+    # preserve
     # what we will return
     df_returned = pd.DataFrame()
     
@@ -45,35 +46,45 @@ def make_df(day):
     df_coral = pd.read_csv(path)
     # sort data
     df_coral = fix_range(df_coral)
-    #append into return df
+    # since preserve values should be (-)
+    df_coral['value'] = -df_coral['value']
+    # append into return df
     df_returned = df_returned._append(df_coral,ignore_index=True)
     
     
     #repeat
     
+    # obtain
     path = "data/helium_data_day_" + str(day) + ".csv"
     df_helium = pd.read_csv(path)
     df_helium = fix_range(df_helium)
     df_returned = df_returned._append(df_helium,ignore_index=True)
     
+    # obtain
     path = "data/oil_data_day_" + str(day) + ".csv"
     df_oil = pd.read_csv(path)
     df_oil = fix_range(df_oil)
     df_returned = df_returned._append(df_oil,ignore_index=True)
     
+    # obtain
     path = "data/ship_data_day_" + str(day) + ".csv"
     df_ship = pd.read_csv(path)
     df_ship = fix_range(df_ship)
     df_returned = df_returned._append(df_ship,ignore_index=True)
     
+    # preserve
     path = "data/species_data_day_" + str(day) + ".csv"
     df_species = pd.read_csv(path)
     df_species = fix_range(df_species)
+    # since preserve values should be (-)
+    df_species['value'] = -df_species['value']
     df_returned = df_returned._append(df_species,ignore_index=True)
     
+    # obtain
     path = "data/metal_data_day_" + str(day) + ".csv"
     df_metal = pd.read_csv(path)
     df_metal = fix_range(df_metal)
+    
     df_returned = df_returned._append(df_metal,ignore_index=True)
     
     return df_returned
