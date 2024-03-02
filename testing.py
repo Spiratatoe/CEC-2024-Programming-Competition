@@ -4,6 +4,7 @@ import pandas as pd
 import numpy as np
 import seaborn as sns
 
+'''
 data = pd.read_csv("data/algal_data_day_1.csv")
 
 df_pivot = data.pivot_table(index='x', 
@@ -12,8 +13,7 @@ df_pivot = data.pivot_table(index='x',
                           aggfunc='mean').sort_index(ascending=False)
 
 sns.heatmap(df_pivot, annot=True, cmap='coolwarm')
-
-
+'''
 
 
 # import all files
@@ -72,6 +72,7 @@ def make_df(day):
     print('oil : ', df_oil['value'].max())
     
     # obtain or perserve
+    # we choose to not count it as perserve as it overlaps with the helium
     path = "data/ship_data_day_" + str(day) + ".csv"
     df_ship = pd.read_csv(path)
     df_ship = fix_range(df_ship)
@@ -266,7 +267,40 @@ for i in range(30):
 
 
 
+#algo time .,.,.,.,.,.,.,..,
 
+'''
+# this is the see the heat map used in the slides 
+
+df_pivot = df_day_1.pivot_table(index='x', 
+                          columns='y', 
+                          values='value', 
+                          aggfunc='mean').sort_index(ascending=False)
+
+sns.heatmap(df_pivot, annot=True, cmap='coolwarm')
+
+'''
+
+# after looking the data and maps, helium is the best mineral, so know we need to see which tiles to not destroy ecologically 
+
+#sort preserves 
+df_eco = df_day_1[df_day_1['value'] < 0]
+df_eco = df_eco[df_eco['x'] < 4]
+df_eco = df_eco[df_eco['y'] < 4]
+
+df_eco['tag'] = "x" + df_eco['x'].apply(str) + "y" + df_eco['y'].apply(str)
+df_eco = df_eco.groupby('tag').sum()
+
+
+# so now we know all the the eco values in the coral region 
+# so daily we want to find the best place to send the rig that day 
+# since the square is a 4x4 we can move to any of those tiles that day as we have 5 movuments
+
+# we will need to reopen the oil info for that day as it is ineficient to go back to the old tiles
+day = 1
+path = "data/helium_data_day_" + str(day) + ".csv"
+df_helium = pd.read_csv(path)
+df_helium = fix_range(df_helium)
 
 
 
