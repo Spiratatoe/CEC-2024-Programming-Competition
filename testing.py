@@ -289,7 +289,7 @@ df_days = [df_day_1, df_day_2, df_day_3, df_day_4, df_day_5, df_day_6, df_day_7,
 #store all rig one points
 #df_rig_1 = pd.DataFrame({'x' : 0, 'y' :0})
 
-df_rig_1 = pd.DataFrame(columns=['x', 'y'])
+df_rig_1 = pd.DataFrame(columns=['x', 'y', 'value', 'eco', 'day'])
 
 # find for everyday
 for days in range(30):
@@ -340,7 +340,7 @@ for days in range(30):
     df_helium_final = df_helium.sort_values(by=['eco'], ascending=False)
     
 
-    new_row = {'x' : df_helium_final['x'].iloc[0], 'y' : df_helium_final['y'].iloc[0]}
+    new_row = {'x' : df_helium_final['x'].iloc[0], 'y' : df_helium_final['y'].iloc[0],'value': df_helium_final['value'].iloc[0], 'eco': df_helium_final['eco'].iloc[0], 'day': day}
     df_rig_1.loc[len(df_rig_1)] = new_row
     
 
