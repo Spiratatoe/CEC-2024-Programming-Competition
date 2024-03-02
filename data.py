@@ -3,8 +3,8 @@ import pandas as pd
 import numpy as np
 import seaborn as sns
 
-for i in range(1,31):
-    data = pd.read_csv("data/species_data_day_"+ str(i) +".csv")
+for i in range(1,2):
+    data = pd.read_csv("data/helium_data_day_"+ str(3) +".csv")
 
     df_pivot = data.pivot_table(index='x', 
                             columns='y', 
