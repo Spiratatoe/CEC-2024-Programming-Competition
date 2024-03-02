@@ -345,7 +345,7 @@ for days in range(30):
     
 
 
-df_rig_1.to_csv('rig1_data')
+df_rig_1.to_csv('rig1_data.csv')
 
 
 
