@@ -358,6 +358,63 @@ df_pivot = df_helium.pivot_table(index='x',
 
 sns.heatmap(df_pivot, annot=True, cmap='coolwarm')
 '''
+# same thing but for rig 2
+
+df_rig_2 = pd.DataFrame(columns=['x', 'y', 'value', 'eco', 'day'])
+
+# find for everyday
+for days in range(30):
+    #sort preserves 
+    df_temp = df_days[days]
+    df_eco = df_temp[df_temp['value'] < 0]
+    df_eco = df_eco[df_eco['x'].between(22, 29)]
+    df_eco = df_eco[df_eco['y'].between(85, 89)]
+    
+    #tag so we know the xy combo
+    df_eco['tag'] = "x" + df_eco['x'].apply(str) + "y" + df_eco['y'].apply(str)
+    df_eco = df_eco.groupby('tag').sum()
+    
+    # sort by tag so when we merge they are alligned
+    df_eco['tag2'] = "x" + df_eco['x'].apply(str) + "y" + df_eco['y'].apply(str)
+    df_eco = df_eco.sort_values(by=['tag2'], ascending=False)
+    
+    
+    # so now we know all the the eco values in the coral region 
+    # so daily we want to find the best place to send the rig that day 
+    # since the square is a 4x4 we can move to any of those tiles that day as we have 5 movuments
+    
+    # we will need to reopen the oil info for that day as it is ineficient to go back to the old tiles
+    day = days + 1
+    path = "data/helium_data_day_" + str(day) + ".csv"
+    df_helium = pd.read_csv(path)
+    df_helium = fix_range(df_helium)
+    
+    df_helium['value'] = df_helium['value'].replace(np.nan, -1)
+    
+    df_helium = df_helium[df_helium['x'].between(22, 29)]
+    df_helium = df_helium[df_helium['y'].between(85, 89)]
+    
+    #missing data, but we need same length, so added negative data that wont be used 
+    while len(df_helium) < 40:
+        new_row = {'Unamed: 0': -1, 'x': -1, 'y': -1, 'value': -1}
+        df_helium.loc[len(df_helium)] = new_row
+    
+    
+    df_helium['tag'] = "x" + df_helium['x'].apply(str) + "y" + df_helium['y'].apply(str)
+    # helium is now sorted in its most profitable corner 
+    # now we merge tables 
+    
+    df_helium = df_helium.sort_values(by=['tag'], ascending=False)
+    df_helium['eco'] =  df_eco['value'].values
+    df_helium = df_helium[df_helium['value'] > 0]
+    #now sort by eco, to find best eco, then sort by value so we have the best eco value
+    df_helium_final = df_helium.sort_values(by=['eco'], ascending=False)
+    
+
+    new_row = {'x' : df_helium_final['x'].iloc[0], 'y' : df_helium_final['y'].iloc[0],'value': df_helium_final['value'].iloc[0], 'eco': df_helium_final['eco'].iloc[0], 'day': day}
+    df_rig_2.loc[len(df_rig_2)] = new_row
+    
 
 
+df_rig_2.to_csv('rig1_data.csv')
 
