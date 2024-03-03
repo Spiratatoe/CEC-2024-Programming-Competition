@@ -416,5 +416,5 @@ for days in range(30):
     
 
 
-df_rig_2.to_csv('rig1_data.csv')
+df_rig_2.to_csv('rig2_data.csv')
 
