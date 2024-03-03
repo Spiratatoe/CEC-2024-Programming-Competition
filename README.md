@@ -17,6 +17,8 @@ To run Pygame, go in the [interface](https://github.com/Spiratatoe/CEC-2024-Prog
 
 **To have a better visualization of the graph, we highly suggest you install [Anaconda](https://www.anaconda.com/) Version: 24.1.2 to run [Spyder](https://www.spyder.com/) Version 5.4.3.**
 
+The simple way to look at our results would be to open [rig1_data.csv](https://github.com/Spiratatoe/CEC-2024-Programming-Competition/blob/main/rig1_data.csv) and [rig2_data.csv](https://github.com/Spiratatoe/CEC-2024-Programming-Competition/blob/main/rig2_data.csv) files.
+
 ## Data files we are using are found inside the [data](https://github.com/Spiratatoe/CEC-2024-Programming-Competition/tree/main/data) folder
 - Helium (helium_data_day_1.csv to helium_data_day_30.csv)
 - Coral Reefs (coral_data_day_1.csv to coral_data_day_30.csv)
