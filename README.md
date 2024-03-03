@@ -3,8 +3,10 @@
 Welcome to the team Tunnel's README.md. Everything you need is in this [Github repository](https://github.com/Spiratatoe/CEC-2024-Programming-Competition).
 
 ## To run Pygame
-- [Python](https://www.python.org/) Version: 3.11.7 
+- [Python](https://www.python.org/) Version: 3.9.13 
 - [Pygame](https://www.pygame.org/) Version: 2.5.2
+
+To run Pygame, go in the [interface](https://github.com/Spiratatoe/CEC-2024-Programming-Competition/tree/main/interface) folder, run the [pygame_cec.py](https://github.com/Spiratatoe/CEC-2024-Programming-Competition/blob/main/interface/pygame_cec.py) file in Python.
 
 ## To run development code
 - [Python](https://www.python.org/) Version: 3.11.7 
