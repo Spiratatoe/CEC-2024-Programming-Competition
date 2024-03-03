@@ -26,6 +26,9 @@ The simple way to look at our results would be to open [rig1_data.csv](https://g
 
 **We are using a total of 90 files.**
 
+## Presentation Slides
+[Slides](https://github.com/Spiratatoe/CEC-2024-Programming-Competition/blob/main/CEC_Tunnel_Presentation.pptx)
+
 ## Team Members
 | Member Name  | Program of Studies |
 | ------------- | ------------- |
